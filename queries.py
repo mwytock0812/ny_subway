@@ -13,7 +13,7 @@ import pandasql
 
 def num_rainy_days(filename):
     weather_data = pandas.read_csv(filename)
-    weather_data.rename(columns = lambda x: x.replace(' ', '_').lower(), inplace=True)
+    weather_data.rename(columns=lambda x: x.replace(' ', '_').lower(), inplace=True)
 
     q = """
     SELECT
@@ -25,15 +25,16 @@ def num_rainy_days(filename):
     GROUP BY
     daten;
     """
-    
+
     #Execute your SQL command against the pandas frame
     rainy_days = pandasql.sqldf(q.lower(), locals())
     return rainy_days
 
+
 def avg_min_temp(filename):
     weather_data = pandas.read_csv(filename)
-    weather_data.rename(columns = lambda x: x.replace(' ', '_').lower(), inplace=True)
-    
+    weather_data.rename(columns=lambda x: x.replace(' ', '_').lower(), inplace=True)
+
     q = """
     SELECT
     avg(cast(mintempi as integer))
@@ -42,13 +43,14 @@ def avg_min_temp(filename):
     WHERE
     cast(mintempi as integer) > 0 and cast(rain as integer) == 1;
     """
-    
+
     mean_temp = pandasql.sqldf(q.lower, locals())
     return mean_temp
 
+
 def avg_riders_rain(filename):
     weather_data = pandas.read_csv(filename)
-    weather_data.rename(columns = lambda x: x.replace(' ', '_').lower(), inplace=True)
+    weather_data.rename(columns=lambda x: x.replace(' ', '_').lower(), inplace=True)
 
     q = """
     SELECT
@@ -58,14 +60,15 @@ def avg_riders_rain(filename):
     WHERE
     cast(rain as integer) == 1;
     """
-    
+
     #Execute your SQL command against the pandas frame
     rainy_entries = pandasql.sqldf(q.lower(), locals())
     return rainy_entries
 
+
 def avg_riders_no_rain(filename):
     weather_data = pandas.read_csv(filename)
-    weather_data.rename(columns = lambda x: x.replace(' ', '_').lower(), inplace=True)
+    weather_data.rename(columns=lambda x: x.replace(' ', '_').lower(), inplace=True)
 
     q = """
     SELECT
@@ -75,7 +78,7 @@ def avg_riders_no_rain(filename):
     WHERE
     cast(rain as integer) == 0;
     """
-    
+
     #Execute your SQL command against the pandas frame
     clear_entries = pandasql.sqldf(q.lower(), locals())
     return clear_entries

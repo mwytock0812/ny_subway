@@ -11,14 +11,16 @@ import statsmodels.api as sm
 from matplotlib import pyplot as plt
 import numpy as np
 
+
 def shapiro_wilk(filepath, parameter):
     df = pandas.read_csv(filepath)
     array = df[parameter]
     w, p = scipy.stats.shapiro(array)
     return w, p
 
+
 def shapiro_all(filepath):
-    df = pandas.read_csv(filepath)    
+    df = pandas.read_csv(filepath)
     col_names = list(df.columns.values)
     col_names = col_names[1:]
     for col in col_names:
@@ -28,8 +30,9 @@ def shapiro_all(filepath):
             print col
             continue
 
+
 def q_q_plot(filepath, parameter):
-    df = pandas.read_csv(filepath)    
+    df = pandas.read_csv(filepath)
     array = df[parameter]
     try:
         fig = sm.qqplot(array, scipy.stats.t, fit=True, line='45')

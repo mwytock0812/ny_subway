@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 def entries_histogram(filepath):
     weather_data = pandas.read_csv(filepath)
     rainy = weather_data['ENTRIESn_hourly'][weather_data['rain']==1]
-    clear = weather_data['ENTRIESn_hourly'][weather_data['rain']==0]  
+    clear = weather_data['ENTRIESn_hourly'][weather_data['rain']==0]
     plt.figure()
     rainy.hist(bins=100, color = 'b', alpha = 0.5, label='Rainy Days')
     clear.hist(bins=100, color = 'g', alpha = 0.5, label='Clear Days')

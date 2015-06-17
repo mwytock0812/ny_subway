@@ -11,14 +11,15 @@ import pandas
 import scipy
 import matplotlib.pyplot as plt
 
+
 def normalize_features(array):
-   """
-   Normalize the features in our data set.
-   """
-   mu = array.mean()
-   sigma = array.std()
-   array_normalized = (array-mu)/sigma
-   return array_normalized, mu, sigma
+    """
+    Normalize the features in our data set.
+    """
+    mu = array.mean()
+    sigma = array.std()
+    array_normalized = (array-mu)/sigma
+    return array_normalized, mu, sigma
 
 
 def compute_cost(features, values, theta):
@@ -43,7 +44,7 @@ def gradient_descent(features, values, theta, alpha, num_iterations):
 
 
 def predictions(filepath):
-    dataframe = pandas.read_csv(filepath)    
+    dataframe = pandas.read_csv(filepath)
     dummy_units = pandas.get_dummies(dataframe['UNIT'], prefix='unit')
     features = dataframe[['rain']].join(dummy_units)
     values = dataframe[['ENTRIESn_hourly']]
